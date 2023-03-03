@@ -1,18 +1,7 @@
-## Prereq
-Python  
-pip  
+# Luminary Perspective Tracking Front End
 
-## Upgrade pip
-`pip install --upgrade pip`
+## Available Scripts
 
-## Install packages
-`pip install opencv-python`  
-`pip install mediapipe`  
-`pip install flask`  
-`pip install flask_socketio`  
-`pip install flask_cors`  
-`pip install eventlet`  
-## Run code
-`python3 socket_server_display.py`  
-`python3 socket_server.py`
+In the project directory, run:
 
+### `npm start`
