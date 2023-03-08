@@ -1,5 +1,4 @@
 import './App.css'
-import { Parallax } from 'react-parallax';
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
@@ -72,17 +71,8 @@ const App = () => {
   }, [dotPos]);
 
 
-  const images = [
-    'images/parallax0@2x.png',
-    'images/parallax3@2x.png',
-    'images/parallax4@2x.png',
-    'images/parallax5@2x.png',
-    'images/parallax6@2x.png',
-    'images/parallax7@2x.png',
-    'images/parallax8@2x.png',
-  ]
   return (
-    <Parallax
+    <div
       blur={{ min: -15, max: 15 }}
       bgImage=""
       bgStyle={{ height: '1000px' }}
@@ -90,11 +80,10 @@ const App = () => {
       <div className='position' style={{ left: `50%`, top: `40%` }}></div>
       <div className='position red' style={{ left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%` }}></div>
       <div style={{ height: '1000px' }}>
-        {images.map((image, index) => (
-          <img key={index} className='delay' src={image} alt="centered" style={{ top: yPositions[index], left: xPositions[index], position: 'absolute', height: '950px', width: '2400px', display: 'block', margin: '0 auto' }} />
-        ))}
+
+
       </div>
-    </Parallax>
+    </div>
   );
 }
 
