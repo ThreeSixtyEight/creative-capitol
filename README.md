@@ -19,4 +19,7 @@ pip
 `python3 socket_server_display.py`  
 `python3 socket_server.py`
 
-## Frontend
+## Run
+
+Frontend: `cd frontend && npm run start`
+Backend: `cd backend && python3 socket_server.py`
