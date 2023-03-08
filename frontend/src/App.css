@@ -90,3 +90,12 @@
   transition-duration: 0.5s;
   transition-delay: 0s;
 }
+
+
+.mix-blend {
+  mix-blend-mode: overlay;
+}
+
+.isolation {
+  isolation:isolate;
+}
