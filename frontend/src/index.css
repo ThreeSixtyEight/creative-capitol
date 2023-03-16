@@ -18,6 +18,18 @@ code {
   display: flex;
 }
 
+.active{
+  stroke: black;
+  stroke-dasharray: 10;
+  animation: dash 5s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 200;
+  }
+}
+
 .svg-block, .color-block {
   width: 50%;
   display: flex;
@@ -29,20 +41,20 @@ code {
    flex-direction: column;
 }
 
-.color-block > div {
+.color {
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
 }
 
-.button-blue {
+.blue {
   background-color: #1252FF;
 }
 
-.button-yellow {
+.yellow {
   background-color: #FFB858;
 }
 
-.button-red {
+.red {
   background-color: #FF5872;
 }
