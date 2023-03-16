@@ -145,9 +145,9 @@ const App = () => {
 
 
         <div className='color-block'>
-          <div className='color red'></div>
-          <div className='color blue'></div>
-          <div className='color yellow'></div>
+          <div className='button-red'></div>
+          <div className='button-blue'></div>
+          <div className='button-yellow'></div>
         </div>
 
       </div>
