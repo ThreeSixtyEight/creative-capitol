@@ -18,6 +18,18 @@ code {
   display: flex;
 }
 
+.active{
+  stroke: black;
+  stroke-dasharray: 10;
+  animation: dash 5s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 200;
+  }
+}
+
 .svg-block, .color-block {
   width: 50%;
   display: flex;
