@@ -21,6 +21,7 @@ const App = () => {
   const [xPositions, setXPositions] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [yPositions, setYPositions] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [dotPos, setDotPos] = useState([0, 0]);
+  const [isRed, setIsRed] = useState(false);
 
   useEffect(() => {
     const xWeights = [0, 0.5, 1, 1.5, 2.5, 3.5, 4.5];
@@ -54,7 +55,6 @@ const App = () => {
     });
 
     socket.on('message', (message) => {
-      console.log(message)
       setDotPos([message.x, message.y]);
       const xPositions = buildPositions(message.x);
       const yPositions = buildPositions(message.y, -20, 'y');
@@ -106,7 +106,7 @@ const App = () => {
                 <path id="Path_1466-5" data-name="Path 1466" d="M3472.461,7484.75v304.706" transform="translate(-12186.325 838.056)" fill="none" stroke="#0c1f87" stroke-linecap="round" stroke-width="5" stroke-dasharray="20"/>
                 <path id="Path_1466-6" data-name="Path 1466" d="M3472.461,7484.75v304.706" transform="translate(-12170.325 838.056)" fill="none" stroke="#0c1f87" stroke-linecap="round" stroke-width="5" stroke-dasharray="20"/>
                 <path id="Path_1467" data-name="Path 1467" d="M39.364-38.221c21.74,0,39.364,17.907,39.364,40V79.993H0V1.775C0-20.314,17.624-38.221,39.364-38.221Z" transform="translate(-8778.364 8687.063)" fill="#0c1f87"/>
-                <path id="Path_1473" data-name="Path 1473" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8689.059)" fill="#ffb858"/>
+                <path id="Path_1473" data-name="Path 1473" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8689.059)" fill={isRed ? "#ffb858" : "#fff"} />
                 <path id="Path_1632" data-name="Path 1632" d="M0,63H126A63,63,0,1,0,0,63Z" transform="translate(-8940 8704)" fill="#fff" opacity="0.5" className='mix-blend isolation'/>
                 <path id="Path_1474" data-name="Path 1474" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8729)" fill="#ffb858"/>
                 <rect id="Rectangle_380" data-name="Rectangle 380" width="67" height="67" transform="translate(-8596 8700)" fill="#ff5872"/>
@@ -124,6 +124,10 @@ const App = () => {
               </g>
             </g>
           </svg>
+
+          <button onMouseEnter={() => setIsRed(true)} onMouseOut={() => setIsRed(false)}  >
+            Red
+          </button>
 
         </div>
 
