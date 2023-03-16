@@ -23,6 +23,17 @@ const App = () => {
   const [dotPos, setDotPos] = useState([0, 0]);
   const [isRed, setIsRed] = useState(false);
 
+  function doElsCollide(el1, el2) {
+    el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
+    el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
+    el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
+    el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
+
+    return !((el1.offsetBottom < el2.offsetTop) ||
+      (el1.offsetTop > el2.offsetBottom) ||
+      (el1.offsetRight < el2.offsetLeft) ||
+      (el1.offsetLeft > el2.offsetRight))
+  };
   useEffect(() => {
     const xWeights = [0, 0.5, 1, 1.5, 2.5, 3.5, 4.5];
     const yWeights = [0, 0.5, 1, 1.5, 2.5, 3.5, 4.5];
@@ -60,18 +71,19 @@ const App = () => {
       const yPositions = buildPositions(message.y, -20, 'y');
       setXPositions(xPositions);
       setYPositions(yPositions);
+      const red = doElsCollide(document.querySelector('.position.red'), document.querySelector('.button.red'));
+      setIsRed(red);
     });
   }, [timer, isConnected]);
 
   useEffect(() => {
-    const FPS = 30;
+    const FPS = 15;
     const i = 1000 / FPS;
     const interval = setInterval(() => {
       socket.emit('ping');
     }, i);
     return () => clearInterval(interval);
   }, [dotPos]);
-
 
   return (
     <div
@@ -89,12 +101,12 @@ const App = () => {
             <g id="Group_76" data-name="Group 76" transform="translate(-750 -339.944)">
               <g id="Group_75" data-name="Group 75" transform="translate(9699 -7824)">
                 <path id="Path_1465" data-name="Path 1465" d="M4783.82,2391.476l-1.006-.288-9.2,11.931-7.332-7.475,11.933-9.2-.433-1.15-15.094,1.725v-10.35l15.239,1.869.431-.862-12.363-9.775,7.619-7.044,9.343,11.93.863-.286-1.726-15.237h11.213l-1.726,15.237.864.286,9.342-11.93,7.619,7.044-12.363,9.775.432.862,15.236-1.869v10.35l-15.092-1.725-.432,1.15,11.932,9.2-7.333,7.475-9.2-11.931-1.008.288,1.726,15.237h-11.213Z" transform="translate(-13526.7 5806.681)" fill="#ff5872"/>
-                <rect class="top-section" id="Rectangle_369" data-name="Rectangle 369" width="134" height="139" transform="translate(-8806 8292.056)" fill="#ffb858"/>
-                <rect class="middle-section" id="Rectangle_370" data-name="Rectangle 370" width="134" height="140" transform="translate(-8806 8431.056)" fill="#1252ff"/>
+                <rect id="Rectangle_369" data-name="Rectangle 369" width="134" height="139" transform="translate(-8806 8292.056)" fill={isRed ? "#ff2500" : "#fff"} />
+                <rect id="Rectangle_370" data-name="Rectangle 370" width="134" height="140" transform="translate(-8806 8431.056)" fill="#1252ff" />
                 <rect id="Rectangle_372" data-name="Rectangle 372" width="420" height="134" transform="translate(-8949 8633.056)" fill="#0c1f87"/>
                 <rect id="Rectangle_374" data-name="Rectangle 374" width="143" height="134" transform="translate(-8949 8633.056)" fill="#ffb858"/>
                 <path id="Path_1479" data-name="Path 1479" d="M0,38.946H77.892A38.946,38.946,0,1,0,0,38.946Z" transform="translate(-8749.893 8351.174)" fill="#fff" opacity="0.416" className='mix-blend isolation'/>
-                <rect class="base-section" id="Rectangle_375" data-name="Rectangle 375" width="134" height="196" transform="translate(-8806 8571.056)" fill="#ff5872"/>
+                <rect id="Rectangle_375" data-name="Rectangle 375" width="134" height="196" transform="translate(-8806 8571.056)" fill="#ff5872" />
                 <path id="Path_1480" data-name="Path 1480" d="M0,38.946H77.892A38.946,38.946,0,1,0,0,38.946Z" transform="translate(-8749.893 8392.109)" opacity="0.6" className='mix-blend isolation'/>
                 <rect id="Rectangle_549" data-name="Rectangle 549" width="96.771" height="43.673" rx="21.836" transform="translate(-8695.249 8605.102) rotate(159)" fill="#fff" opacity="0.4" className='mix-blend isolation'/>
                 <path id="Subtraction_146" data-name="Subtraction 146" d="M33.5,67a34.035,34.035,0,0,1-3.425-.173,33.45,33.45,0,0,1-29.9-29.9,34,34,0,0,1,0-6.85,33.45,33.45,0,0,1,29.9-29.9,34,34,0,0,1,6.85,0,33.45,33.45,0,0,1,29.9,29.9,34,34,0,0,1,0,6.85,33.45,33.45,0,0,1-29.9,29.9A34.034,34.034,0,0,1,33.5,67Zm.022-50.228a16.873,16.873,0,0,0-3.376.34,16.658,16.658,0,0,0-5.989,2.52A16.8,16.8,0,0,0,18.088,27a16.666,16.666,0,0,0-.976,3.144,16.913,16.913,0,0,0,0,6.751,16.658,16.658,0,0,0,2.52,5.989A16.8,16.8,0,0,0,27,48.956a16.665,16.665,0,0,0,3.144.976,16.913,16.913,0,0,0,6.751,0,16.658,16.658,0,0,0,5.989-2.52,16.8,16.8,0,0,0,6.069-7.37,16.665,16.665,0,0,0,.976-3.144,16.913,16.913,0,0,0,0-6.751,16.658,16.658,0,0,0-2.52-5.989,16.8,16.8,0,0,0-7.37-6.069,16.666,16.666,0,0,0-3.144-.976A16.873,16.873,0,0,0,33.522,16.772Z" transform="translate(-8806 8504.056)" fill="#fff" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" opacity="0.6" className='mix-blend isolation'/>
@@ -106,7 +118,7 @@ const App = () => {
                 <path id="Path_1466-5" data-name="Path 1466" d="M3472.461,7484.75v304.706" transform="translate(-12186.325 838.056)" fill="none" stroke="#0c1f87" stroke-linecap="round" stroke-width="5" stroke-dasharray="20"/>
                 <path id="Path_1466-6" data-name="Path 1466" d="M3472.461,7484.75v304.706" transform="translate(-12170.325 838.056)" fill="none" stroke="#0c1f87" stroke-linecap="round" stroke-width="5" stroke-dasharray="20"/>
                 <path id="Path_1467" data-name="Path 1467" d="M39.364-38.221c21.74,0,39.364,17.907,39.364,40V79.993H0V1.775C0-20.314,17.624-38.221,39.364-38.221Z" transform="translate(-8778.364 8687.063)" fill="#0c1f87"/>
-                <path id="Path_1473" data-name="Path 1473" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8689.059)" fill={isRed ? "#ffb858" : "#fff"} />
+                <path id="Path_1473" data-name="Path 1473" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8689.059)" fill="#ffb858" />
                 <path id="Path_1632" data-name="Path 1632" d="M0,63H126A63,63,0,1,0,0,63Z" transform="translate(-8940 8704)" fill="#fff" opacity="0.5" className='mix-blend isolation'/>
                 <path id="Path_1474" data-name="Path 1474" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8729)" fill="#ffb858"/>
                 <rect id="Rectangle_380" data-name="Rectangle 380" width="67" height="67" transform="translate(-8596 8700)" fill="#ff5872"/>
@@ -125,7 +137,7 @@ const App = () => {
             </g>
           </svg>
 
-          <button onMouseEnter={() => setIsRed(true)} onMouseOut={() => setIsRed(false)}  >
+          <button style={{left: `2%`, top: `20%`, background: `red`, height: `150px`, width: `150px`, position: `absolute`}} className="button red" >
             Red
           </button>
 
