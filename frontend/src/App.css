@@ -100,35 +100,3 @@
   isolation:isolate;
 }
 
-.wrapper {
-  display: flex;
-}
-
-.svg-block, .color-block {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.color-block {
-   flex-direction: column;
-}
-
-.color {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 20px;
-}
-
-.blue {
-  background-color: #1252ff;
-}
-
-.yellow {
-  background-color: #ffb858;
-}
-
-.red {
-  background-color: #ff5872;
-}
