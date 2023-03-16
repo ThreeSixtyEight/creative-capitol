@@ -23,6 +23,17 @@ const App = () => {
   const [dotPos, setDotPos] = useState([0, 0]);
   const [isRed, setIsRed] = useState(false);
 
+  function doElsCollide(el1, el2) {
+    el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
+    el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
+    el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
+    el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
+
+    return !((el1.offsetBottom < el2.offsetTop) ||
+      (el1.offsetTop > el2.offsetBottom) ||
+      (el1.offsetRight < el2.offsetLeft) ||
+      (el1.offsetLeft > el2.offsetRight))
+  };
   useEffect(() => {
     const xWeights = [0, 0.5, 1, 1.5, 2.5, 3.5, 4.5];
     const yWeights = [0, 0.5, 1, 1.5, 2.5, 3.5, 4.5];
@@ -60,18 +71,19 @@ const App = () => {
       const yPositions = buildPositions(message.y, -20, 'y');
       setXPositions(xPositions);
       setYPositions(yPositions);
+      const red = doElsCollide(document.querySelector('.position.red'), document.querySelector('.button.red'));
+      setIsRed(red);
     });
   }, [timer, isConnected]);
 
   useEffect(() => {
-    const FPS = 30;
+    const FPS = 15;
     const i = 1000 / FPS;
     const interval = setInterval(() => {
       socket.emit('ping');
     }, i);
     return () => clearInterval(interval);
   }, [dotPos]);
-
 
   return (
     <div
@@ -81,7 +93,7 @@ const App = () => {
     >
       <div className='position' style={{ left: `50%`, top: `40%` }}></div>
       <div className='position red' style={{ left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%` }}></div>
-      <div style={{ height: '1000px' }}>
+      <div className='wrapper' style={{ height: '1000px' }}>
 
         <div className='svg-block'>
 
@@ -109,7 +121,7 @@ const App = () => {
                 <path id="Path_1466-5" data-name="Path 1466" d="M3472.461,7484.75v304.706" transform="translate(-12186.325 838.056)" fill="none" stroke="#0c1f87" stroke-linecap="round" stroke-width="5" stroke-dasharray="20"/>
                 <path id="Path_1466-6" data-name="Path 1466" d="M3472.461,7484.75v304.706" transform="translate(-12170.325 838.056)" fill="none" stroke="#0c1f87" stroke-linecap="round" stroke-width="5" stroke-dasharray="20"/>
                 <path id="Path_1467" data-name="Path 1467" d="M39.364-38.221c21.74,0,39.364,17.907,39.364,40V79.993H0V1.775C0-20.314,17.624-38.221,39.364-38.221Z" transform="translate(-8778.364 8687.063)" fill="#0c1f87"/>
-                <path id="Path_1473" data-name="Path 1473" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8689.059)" fill={isRed ? "#ffb858" : "#fff"} />
+                <path id="Path_1473" data-name="Path 1473" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8689.059)" fill="#ffb858" />
                 <path id="Path_1632" data-name="Path 1632" d="M0,63H126A63,63,0,1,0,0,63Z" transform="translate(-8940 8704)" fill="#fff" opacity="0.5" className='mix-blend isolation'/>
                 <path id="Path_1474" data-name="Path 1474" d="M0,38H76A38,38,0,1,0,0,38Z" transform="translate(-8672 8729)" fill="#ffb858"/>
                 <rect id="Rectangle_380" data-name="Rectangle 380" width="67" height="67" transform="translate(-8596 8700)" fill="#ff5872"/>
@@ -129,10 +141,17 @@ const App = () => {
             </g>
           </svg>
 
-          <button onMouseEnter={() => setIsRed(true)} onMouseOut={() => setIsRed(false)}  >
+          <button style={{left: `2%`, top: `20%`, background: `red`, height: `150px`, width: `150px`, position: `absolute`}} className="button red" >
             Red
           </button>
 
+        </div>
+
+
+        <div className='color-block'>
+          <div className='color red'></div>
+          <div className='color blue'></div>
+          <div className='color yellow'></div>
         </div>
 
       </div>
