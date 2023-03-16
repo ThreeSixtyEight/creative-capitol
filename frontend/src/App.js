@@ -81,7 +81,7 @@ const App = () => {
     >
       <div className='position' style={{ left: `50%`, top: `40%` }}></div>
       <div className='position red' style={{ left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%` }}></div>
-      <div style={{ height: '1000px' }}>
+      <div className='wrapper' style={{ height: '1000px' }}>
 
         <div className='svg-block'>
 
@@ -129,6 +129,13 @@ const App = () => {
             Red
           </button>
 
+        </div>
+
+
+        <div className='color-block'>
+          <div className='color red'></div>
+          <div className='color blue'></div>
+          <div className='color yellow'></div>
         </div>
 
       </div>
