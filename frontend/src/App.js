@@ -73,6 +73,7 @@ const App = () => {
   }, [dotPos]);
 
 
+
   return (
     <div
       blur={{ min: -15, max: 15 }}
