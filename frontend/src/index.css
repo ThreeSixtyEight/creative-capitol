@@ -5,6 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #FFF7EB;
+}
+
+.svg-block svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
 }
 
 code {
