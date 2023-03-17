@@ -33,15 +33,16 @@
   height: 10px;
   box-shadow: 50px 0 rgba(255, 252, 255, 0.2);
 }
-.position.red::after, .position.red::before {
+.position.pointer::after,
+.position.pointer::before {
   background: rgba(255, 0, 0, 0.9);
 }
 
-.position.red::after {
+.position.pointer::after {
   box-shadow: 0 50px rgba(255, 0, 0, 0.9);
 }
 
-.position.red::before {
+.position.pointer::before {
   box-shadow: 50px 0 rgba(255, 0, 0, 0.9);
 }
 
@@ -57,8 +58,8 @@
   transition-property: left, top, width, height, background-color, opacity;
   transition-duration: .2s;
   transition-delay: 0s;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+    height: 50px;
 }
 
 

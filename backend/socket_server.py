@@ -113,7 +113,7 @@ def time_run():
     #     average_x = int(sum(last_x_values) / len(last_x_values))
     #     average_y = int(sum(last_y_values) / len(last_y_values))
     #print(average_x,average_y)
-    emit("message",{"x": average_x, "y": average_y})
+    emit("fingerposition",{"x": average_x, "y": average_y})
     eventlet.sleep(0)
     
 
