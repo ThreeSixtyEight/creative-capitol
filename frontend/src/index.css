@@ -14,8 +14,26 @@ code {
     monospace;
 }
 
+.main-title{
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.instructions{
+  display: inline-block;
+  margin-bottom: 80px;
+  font-weight: 600;
+  background-color: #FFB858;
+  padding: 8px 16px;
+  border-radius: 16px;
+  border: dashed 1px black;
+}
+
 .wrapper {
   display: flex;
+  align-items: flex-start;
 }
 
 .active{
