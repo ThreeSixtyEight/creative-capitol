@@ -92,8 +92,8 @@ const App = () => {
     >
       <div className='position pointer' style={{left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`}}>{hoverTime > 0 ? Math.round(hoverTime / 10) + 1 : ""}</div>
       <div style={{textAlign: 'center', width: '100%'}}>
-        <h1 className='main-title'>Build Your Own Creative Capital</h1>
-        <p className='instructions'>Point to a color to customize your Capital building.</p>
+        <h1 className='main-title'>Build Your Own Creative Capitol</h1>
+        <p className='instructions'>Point to a color to customize your capitol building.</p>
       </div>
       <div className='wrapper'>
 
