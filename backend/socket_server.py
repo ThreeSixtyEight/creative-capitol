@@ -13,15 +13,15 @@ Payload.max_decode_packets = 500
 
 mpHands = mp.solutions.hands.Hands(max_num_hands=2, min_detection_confidence=0.7, min_tracking_confidence=0.7)
 
-face_mesh = mp_face_mesh.FaceMesh(max_num_faces=2,min_detection_confidence=0.5, min_tracking_confidence=0.5)
-mp_face_mesh = mp.solutions.face_mesh
+#face_mesh = mp_face_mesh.FaceMesh(max_num_faces=2,min_detection_confidence=0.5, min_tracking_confidence=0.5)
+#mp_face_mesh = mp.solutions.face_mesh
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 CORS(app,resources={r"/*":{"origins":"*"}})
 socketio = SocketIO(app,cors_allowed_origins="*")
 
-SMOOTHNESS = 1
+SMOOTHNESS = 4
 NOSE_POSITION = 28
 raw_output = [[],[]]
 last_values = []
@@ -57,7 +57,7 @@ def time_run():
     image.flags.writeable = False
     
     # Get the result
-    results = face_mesh.process(image)
+    #results = face_mesh.process(image)
     hand_results = mpHands.process(image)
 
     # To improve performance
@@ -79,40 +79,13 @@ def time_run():
                     raw_output[lm_idx] = [x_percentage,y_percentage]
                     
                     last_values.append(raw_output[0])
-
-        if len(last_values) > SMOOTHNESS:
-            last_values.pop(0)
-    
+                    
+        last_values = last_values[-SMOOTHNESS:]
         last_x_values = [coord[0] for coord in last_values]
         last_y_values = [coord[1] for coord in last_values]
         average_x = int(sum(last_x_values) / len(last_x_values))
         average_y = int(sum(last_y_values) / len(last_y_values))
-
-    # if results.multi_face_landmarks and not hand_landmarks:
-    #     for lm_idx in range(len(results.multi_face_landmarks)):
-    #         face_landmarks = results.multi_face_landmarks[lm_idx]
-    #         for idx, lm in enumerate(face_landmarks.landmark):
-    #             if idx == 28:
-    #                 x, y = int(lm.x * img_w), int(lm.y * img_h)
-    #                 x_percentage = int(x/img_w*100) - 50
-    #                 y_percentage = int(y/img_h*100) - 50
-    #                 raw_output[lm_idx] = [x_percentage,y_percentage]
-
-    #     if len(results.multi_face_landmarks) == 2:
-    #         ox = (raw_output[0][0] + raw_output[1][0]) // 2
-    #         oy = (raw_output[0][1] + raw_output[1][1]) // 2
-    #         last_values.append([ox,oy])
-    #     else:
-    #         last_values.append(raw_output[0])
-
-    #     if len(last_values) > SMOOTHNESS:
-    #         last_values.pop(0)
-    
-    #     last_x_values = [coord[0] for coord in last_values]
-    #     last_y_values = [coord[1] for coord in last_values]
-    #     average_x = int(sum(last_x_values) / len(last_x_values))
-    #     average_y = int(sum(last_y_values) / len(last_y_values))
-    #print(average_x,average_y)
+        print(average_x,average_y)
     emit("fingerposition",{"x": average_x, "y": average_y})
     eventlet.sleep(0)
     
