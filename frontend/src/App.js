@@ -1,4 +1,5 @@
 import './App.css'
+import './print.css'
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
@@ -36,6 +37,9 @@ const App = () => {
       (el1.offsetRight < el2.offsetLeft) ||
       (el1.offsetLeft > el2.offsetRight))
   };
+
+
+
   useEffect(() => {
 
     socket.on('connect', () => {
@@ -65,12 +69,12 @@ const App = () => {
         setHoverTime(0);
       }
       if (hoverTime > 40) {
-        setStep(step + 1);
         let colors = selectedColors;
         colors[step - 1] = hoverColor;
         setSelectedColors(colors);
         setHoverColor("#fff");
         setHoverTime(0);
+        setStep(step + 1);
       }
     });
   }, [timer, isConnected, hoverTime, hoverColor, step, selectedColors]);
@@ -83,6 +87,7 @@ const App = () => {
     }, i);
     return () => clearInterval(interval);
   }, [dotPos]);
+
 
   return (
     <div>
