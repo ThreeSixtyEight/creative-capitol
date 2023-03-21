@@ -80,7 +80,7 @@ const App = () => {
   }, [timer, isConnected, hoverTime, hoverColor, step, selectedColors]);
 
   useEffect(() => {
-    const FPS = 60;
+    const FPS = 30;
     const i = 1000 / FPS;
     const interval = setInterval(() => {
       socket.emit('ping');
@@ -92,8 +92,6 @@ const App = () => {
   return (
     <div
       blur={{ min: -15, max: 15 }}
-      bgImage=""
-      bgStyle={{ height: '1000px' }}
     >
       <div className='position pointer' style={{left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`}}>
         {hoverTime > 0 ? Math.round(hoverTime / 10) + 1 : ""}

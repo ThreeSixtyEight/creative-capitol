@@ -9,7 +9,7 @@ cap = cv2.VideoCapture(0)
 mp_face_mesh = mp.solutions.face_mesh
 from engineio.payload import Payload
 
-Payload.max_decode_packets = 100
+Payload.max_decode_packets = 500
 
 mpHands = mp.solutions.hands.Hands(max_num_hands=2, min_detection_confidence=0.7, min_tracking_confidence=0.7)
 
