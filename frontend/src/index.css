@@ -76,3 +76,7 @@ code {
 .button-red {
   background-color: #FF5872;
 }
+
+.position.hidden {
+  opacity: 0.3;
+}
