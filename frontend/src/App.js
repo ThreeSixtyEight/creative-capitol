@@ -85,11 +85,7 @@ const App = () => {
   }, [dotPos]);
 
   return (
-    <div
-      blur={{ min: -15, max: 15 }}
-      bgImage=""
-      bgStyle={{ height: '1000px' }}
-    >
+    <div>
       <div className='position pointer' style={{left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`}}>{hoverTime > 0 ? Math.round(hoverTime / 10) + 1 : ""}</div>
       <div className='wrapper' style={{ height: '1000px' }}>
 
