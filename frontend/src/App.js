@@ -1,6 +1,6 @@
 import './App.css'
 import { io } from "socket.io-client";
-import { useEffect, useState } from "react";
+import {useEffect, useState, useCallback} from "react";
 
 
 const socket = io("http://localhost:5001/", {
@@ -36,6 +36,30 @@ const App = () => {
       (el1.offsetRight < el2.offsetLeft) ||
       (el1.offsetLeft > el2.offsetRight))
   };
+
+  const updateScreen = useCallback(() => {
+    if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-red'))) {
+      setHoverColor("#FF5872");
+      setHoverTime(hoverTime + 1);
+    } else if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-blue'))) {
+      setHoverColor("#1252FF");
+      setHoverTime(hoverTime + 1);
+    } else if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-yellow'))) {
+      setHoverColor("#FFB858");
+      setHoverTime(hoverTime + 1);
+    } else {
+      setHoverColor("#fff");
+      setHoverTime(0);
+    }
+    if (hoverTime > 40) {
+      setStep(step + 1);
+      let colors = selectedColors;
+      colors[step - 1] = hoverColor;
+      setSelectedColors(colors);
+      setHoverColor("#fff");
+      setHoverTime(0);
+    }
+  }, [hoverTime, step, selectedColors, hoverColor, setHoverColor, setHoverTime, setStep, setSelectedColors]);
   useEffect(() => {
 
     socket.on('connect', () => {
@@ -50,30 +74,10 @@ const App = () => {
 
     socket.on('fingerposition', (message) => {
       setDotPos([message.x, message.y]);
-
-      if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-red'))) {
-        setHoverColor("#FF5872");
-        setHoverTime(hoverTime + 1);
-      } else if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-blue'))) {
-        setHoverColor("#1252FF");
-        setHoverTime(hoverTime + 1);
-      } else if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-yellow'))) {
-        setHoverColor("#FFB858");
-        setHoverTime(hoverTime + 1);
-      } else {
-        setHoverColor("#fff");
-        setHoverTime(0);
-      }
-      if (hoverTime > 40) {
-        setStep(step + 1);
-        let colors = selectedColors;
-        colors[step - 1] = hoverColor;
-        setSelectedColors(colors);
-        setHoverColor("#fff");
-        setHoverTime(0);
-      }
+      updateScreen();
     });
-  }, [timer, isConnected, hoverTime, hoverColor, step, selectedColors]);
+  }, [timer, isConnected, updateScreen]);
+
 
   useEffect(() => {
     const FPS = 60;
@@ -86,9 +90,7 @@ const App = () => {
 
   return (
     <div
-      blur={{ min: -15, max: 15 }}
-      bgImage=""
-      bgStyle={{ height: '1000px' }}
+      style={{height: '1000px'}}
     >
       <div className='position pointer' style={{left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`}}>{hoverTime > 0 ? Math.round(hoverTime / 10) + 1 : ""}</div>
       <div style={{textAlign: 'center', width: '100%'}}>
