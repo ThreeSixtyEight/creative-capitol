@@ -13,56 +13,19 @@
   }
 }
 
-.position::after, .position::before {
-  content: "";
-  background: rgba(255, 252, 255, 0.2);
-  border-radius: 2px;
-  position: absolute;
-}
-
-.position::after {
-  left: 30px;
-  width: 10px;
-  height: 20px;
-  box-shadow: 0 50px rgba(255, 252, 255, 0.2);
-}
-
-.position::before {
-  top: 30px;
-  width: 20px;
-  height: 10px;
-  box-shadow: 50px 0 rgba(255, 252, 255, 0.2);
-}
-.position.pointer::after,
-.position.pointer::before {
-  background: rgba(255, 0, 0, 0.9);
-}
-
-.position.pointer::after {
-  box-shadow: 0 50px rgba(255, 0, 0, 0.9);
-}
-
-.position.pointer::before {
-  box-shadow: 50px 0 rgba(255, 0, 0, 0.9);
-}
-
-.position {
-  position: fixed;
-  /* width: 100px;
-  height: 100px;
+.position.pointer{
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
-  background-color: #61dafb; */
+  background: #61dafb;
+  position: fixed;
   opacity: 1;
   z-index: 1000;
   display: block;
   transition-property: left, top, width, height, background-color, opacity;
   transition-duration: .2s;
   transition-delay: 0s;
-  width: 50px;
-    height: 50px;
 }
-
-
 
 .App-header {
   background-color: #282c34;
