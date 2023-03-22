@@ -5,39 +5,61 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #FFF7EB;
+  background: #000F5F;
 }
 
+.main-container{
+  height: 100vh;
+  overflow: hidden;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+}
+
+.svg-block{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 65vh;
+  flex-shrink: 0;
+}
+
+.svg-building{
+  width: 100%;
+  height: auto;
+}
+
+.title-wrapper{
+  padding-top: 7.4vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2vw;
+  gap: 2rem;
+}
+
+.main-title{
+  max-width: 50vh;
+  width: 100%;
+  height: auto;
+}
+
+.instructions{
+  max-width: 20vh;
+  width: 100%;
+  height: auto;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.main-title{
-  font-size: 48px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.instructions{
-  display: inline-block;
-  margin-bottom: 80px;
-  font-weight: 600;
-  background-color: #FFB858;
-  padding: 8px 16px;
-  border-radius: 16px;
-  border: dashed 1px black;
-}
-
-.wrapper {
-  display: flex;
-  align-items: flex-start;
-}
-
 .active{
-  stroke: black;
+  stroke: #FF5872;
+  stroke-width: 3;
   stroke-dasharray: 10;
   animation: dash 5s linear infinite;
 }
@@ -48,21 +70,40 @@ code {
   }
 }
 
-.svg-block, .color-block {
-  width: 50%;
+.content-wrapper{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  padding: 0 7.4vh;
 }
 
 .color-block {
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-bottom: 7.4vh;
 }
 
 .color {
-  width: 500px;
-    height: 150px;
-    margin-bottom: 80px;
+  width: 100%;
+  height: 25%;
+  border-radius: 30px;
+  border: 4px solid #FFF7EB;
+}
+
+.gradient {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 120vw;
+  height: 120vw;
+  transform: translateX(50%) translateY(50%);
+  background: transparent radial-gradient(closest-side at 50% 50%, #1F58F5 0%, #1F58F500 100%) 0% 0% no-repeat padding-box;
+  opacity: 1;
+  z-index: -1;
 }
 
 .button-blue {

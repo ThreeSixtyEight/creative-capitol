@@ -5,7 +5,7 @@ import cv2
 import mediapipe as mp
 import eventlet
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 mp_face_mesh = mp.solutions.face_mesh
 from engineio.payload import Payload
 
