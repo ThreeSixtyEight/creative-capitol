@@ -5,7 +5,7 @@ import {useEffect, useState, useCallback} from "react";
 
 
 const socket = io("http://localhost:5001/", {
-  transports: ["polling"],
+  transports: ["websocket"],
   cors: {
     origin: "http://localhost:3000/",
   },
@@ -39,6 +39,7 @@ const App = () => {
   };
 
   const updateScreen = useCallback(() => {
+    const prevHover = hoverColor;
     if (doElsCollide(document.querySelector('.position.pointer'), document.querySelector('.button-red'))) {
       setHoverColor("#FF5872");
       setHoverTime(hoverTime + 1);
@@ -52,7 +53,10 @@ const App = () => {
       setHoverColor("#fff");
       setHoverTime(0);
     }
-    if (hoverTime > 40) {
+    if (prevHover !== hoverColor) {
+      setHoverTime(0);
+    }
+    if (hoverTime > 50) {
       setStep(step + 1);
       let colors = selectedColors;
       colors[step - 1] = hoverColor;
@@ -81,7 +85,7 @@ const App = () => {
 
 
   useEffect(() => {
-    const FPS = 30;
+    const FPS = 60;
     const i = 1000 / FPS;
     const interval = setInterval(() => {
       socket.emit('ping');
@@ -94,8 +98,11 @@ const App = () => {
     <div
       style={{height: '1000px'}}
     >
-      <div className='position pointer' style={{left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`}}>
-        {hoverTime > 0 ? Math.round(hoverTime / 10) + 1 : ""}
+      <div className={`position pointer pie ${hoverTime > 0 ? 'hovering' : ''}`} style={{
+        left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`,
+      }}>
+        {hoverTime > 0 ? Math.round(hoverTime / 30) + 1 : ""}
+        <h1>{hoverTime}</h1>
       </div>
       
       <div style={{textAlign: 'center', width: '100%'}}>
@@ -139,8 +146,9 @@ const App = () => {
                 <path id="Path_1475" data-name="Path 1475" d="M0,66.9v.042H66.9V0A66.9,66.9,0,0,0,0,66.9Z" transform="translate(-8595.902 8633.056)" fill="#1252ff"/>
                 <path id="Path_1477" data-name="Path 1477" d="M62,0V62H0Z" transform="translate(-8868 8571.056)" fill="#1252ff"/>
                 <path id="Path_1478" data-name="Path 1478" d="M0,0,62,62H0Z" transform="translate(-8672 8571.056)" fill="#ffb858"/>
-                <rect className={`top-small-block ${step === 1 ? "active" : ""}`} id="Rectangle_382" data-name="Rectangle 382" width="62" height="65" transform="translate(-8770 8227)" fill={step === 1 ? hoverColor : selectedColors[0]} />
-                {/* <rect class="top-small-block" id="Rectangle_382" data-name="Rectangle 382" width="62" height="65" transform="translate(-8770 8227)" fill="#1252ff"/> */}
+                <rect className={`top-small-block ${step === 1 ? "active" : ""}`} id="Rectangle_382" data-name="Rectangle 382" width="62" height="65" transform="translate(-8770 8292) rotate(-90)" fill={step === 1 ? "none" : selectedColors[0]} />
+
+                <rect class="top-small-block" id="Rectangle_382" data-name="Rectangle 382" width="65" height="65" transform={`translate(-8705 8292) rotate(180) scale(1 ${step === 1 ? hoverColor === "#fff" ? "0" : (hoverTime / 50 <= 1 ? hoverTime / 50 : 1) : 0})`} fill={hoverColor} />
                 <line id="Line_9" data-name="Line 9" y2="26" transform="translate(-8729.5 8247.5)" fill="none" stroke="#0c1f87" strokeLinecap="round" strokeWidth="4"/>
                 <line id="Line_10" data-name="Line 10" y2="26" transform="translate(-8748.5 8247.5)" fill="none" stroke="#0c1f87" strokeLinecap="round" strokeWidth="4"/>
                 <path id="Path_1633" data-name="Path 1633" d="M0,0,62,62H0Z" transform="translate(-8610 8633.056) rotate(180)" fill="#ff5872"/>

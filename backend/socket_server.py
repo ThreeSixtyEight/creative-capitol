@@ -9,7 +9,7 @@ cap = cv2.VideoCapture(0)
 mp_face_mesh = mp.solutions.face_mesh
 from engineio.payload import Payload
 
-Payload.max_decode_packets = 500
+Payload.max_decode_packets = 100
 
 mpHands = mp.solutions.hands.Hands(max_num_hands=2, min_detection_confidence=0.7, min_tracking_confidence=0.7)
 
@@ -79,7 +79,8 @@ def time_run():
                     raw_output[lm_idx] = [x_percentage,y_percentage]
                     
                     last_values.append(raw_output[0])
-                    
+        if len(last_values) > SMOOTHNESS:
+            last_values.pop(0)
         last_values = last_values[-SMOOTHNESS:]
         last_x_values = [coord[0] for coord in last_values]
         last_y_values = [coord[1] for coord in last_values]
