@@ -117,13 +117,18 @@ const App = () => {
             <g id="Group_76" data-name="Group 76" transform="translate(-750 -339.944)">
               <g id="Group_75" data-name="Group 75" transform="translate(9699 -7824)">
                 <path id="Path_1465" data-name="Path 1465" d="M4783.82,2391.476l-1.006-.288-9.2,11.931-7.332-7.475,11.933-9.2-.433-1.15-15.094,1.725v-10.35l15.239,1.869.431-.862-12.363-9.775,7.619-7.044,9.343,11.93.863-.286-1.726-15.237h11.213l-1.726,15.237.864.286,9.342-11.93,7.619,7.044-12.363,9.775.432.862,15.236-1.869v10.35l-15.092-1.725-.432,1.15,11.932,9.2-7.333,7.475-9.2-11.931-1.008.288,1.726,15.237h-11.213Z" transform="translate(-13526.7 5806.681)" fill="#ff5872"/>
-                <rect className={`top-tower-section ${step === 2 ? "active" : ""}`} id="Rectangle_369" data-name="Rectangle 369" width="134" height="139" transform="translate(-8806 8292.056)" fill={step === 2 ? hoverColor : selectedColors[1]} />
+                <rect className={`top-tower-section ${step === 2 ? "active" : ""}`} id="Rectangle_369" data-name="Rectangle 369" width="134" height="139" transform="translate(-8806 8292.056)" fill={step === 2 ? "#fff" : selectedColors[1]} />
+
                 {/* <rect className="top-tower-section" id="Rectangle_369" data-name="Rectangle 369" width="134" height="139" transform="translate(-8806 8292.056)" fill="#ffb858"/> */}
+
                 <rect className={`middle-tower-section ${step === 3 ? "active" : ""}`} id="Rectangle_370" data-name="Rectangle 370" width="134" height="140" transform="translate(-8806 8431.056)" fill={step === 3 ? hoverColor : selectedColors[2]} />
+
                 {/* <rect className="middle-tower-section" id="Rectangle_370" data-name="Rectangle 370" width="134" height="140" transform="translate(-8806 8431.056)" fill="#1252ff"/> */}
                 <rect className="base-section" id="Rectangle_372" data-name="Rectangle 372" width="420" height="134" transform="translate(-8949 8633.056)" fill="#0c1f87" />
                 <rect id="Rectangle_374" data-name="Rectangle 374" width="143" height="134" transform="translate(-8949 8633.056)" fill="#ffb858"/>
-                <path id="Path_1479" data-name="Path 1479" d="M0,38.946H77.892A38.946,38.946,0,1,0,0,38.946Z" transform="translate(-8749.893 8351.174)" fill="#fff" opacity="0.416" className='mix-blend isolation'/>
+                <rect class="top-tower-section" id="" data-name="Rectangle 382" width="134" height="139" transform={`translate(-8806 8292.056) rotate(0) scale(1 ${step === 2 ? hoverColor === "#fff" ? "0" : (hoverTime / 50 <= 1 ? hoverTime / 50 : 1) : 0})`} fill={hoverColor} />
+
+                <path id="Path_1479" data-name="Path 1479" d="M0,38.946H77.892A38.946,38.946,0,1,0,0,38.946Z" transform="translate(-8749.893 8351.174)" fill="#fff" opacity="0.416" className='mix-blend isolation' />
                 <rect className={`bottom-tower-section ${step === 4 ? "active" : ""}`} id="Rectangle_375" data-name="Rectangle 375" width="134" height="196" transform="translate(-8806 8571.056)" fill={step === 4 ? hoverColor : selectedColors[3]} />
                 {/* <rect className="bottom-tower-section" id="Rectangle_375" data-name="Rectangle 375" width="134" height="196" transform="translate(-8806 8571.056)" fill="#ff5872"/> */}
                 <path id="Path_1480" data-name="Path 1480" d="M0,38.946H77.892A38.946,38.946,0,1,0,0,38.946Z" transform="translate(-8749.893 8392.109)" opacity="0.6" className='mix-blend isolation'/>
@@ -146,7 +151,7 @@ const App = () => {
                 <path id="Path_1475" data-name="Path 1475" d="M0,66.9v.042H66.9V0A66.9,66.9,0,0,0,0,66.9Z" transform="translate(-8595.902 8633.056)" fill="#1252ff"/>
                 <path id="Path_1477" data-name="Path 1477" d="M62,0V62H0Z" transform="translate(-8868 8571.056)" fill="#1252ff"/>
                 <path id="Path_1478" data-name="Path 1478" d="M0,0,62,62H0Z" transform="translate(-8672 8571.056)" fill="#ffb858"/>
-                <rect className={`top-small-block ${step === 1 ? "active" : ""}`} id="Rectangle_382" data-name="Rectangle 382" width="62" height="65" transform="translate(-8770 8292) rotate(-90)" fill={step === 1 ? "none" : selectedColors[0]} />
+                <rect className={`top-small-block ${step === 1 ? "active" : ""}`} id="Rectangle_382" data-name="Rectangle 382" width="62" height="65" transform="translate(-8770 8292) rotate(-90)" fill={step === 1 ? "#fff" : selectedColors[0]} />
 
                 <rect class="top-small-block" id="Rectangle_382" data-name="Rectangle 382" width="65" height="65" transform={`translate(-8705 8292) rotate(180) scale(1 ${step === 1 ? hoverColor === "#fff" ? "0" : (hoverTime / 50 <= 1 ? hoverTime / 50 : 1) : 0})`} fill={hoverColor} />
                 <line id="Line_9" data-name="Line 9" y2="26" transform="translate(-8729.5 8247.5)" fill="none" stroke="#0c1f87" strokeLinecap="round" strokeWidth="4"/>
