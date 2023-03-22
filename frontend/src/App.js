@@ -56,7 +56,7 @@ const App = () => {
     if (prevHover !== hoverColor) {
       setHoverTime(0);
     }
-    if (hoverTime > 50) {
+    if (hoverTime > 40) {
       setStep(step + 1);
       let colors = selectedColors;
       colors[step - 1] = hoverColor;
@@ -122,7 +122,7 @@ const App = () => {
                 {/* <rect className="middle-tower-section" id="Rectangle_370" data-name="Rectangle 370" width="134" height="140" transform="translate(-8806 8431.056)" fill="#1252ff"/> */}
                 <rect className="base-section" id="Rectangle_372" data-name="Rectangle 372" width="420" height="134" transform="translate(-8949 8633.056)" fill="#0c1f87" />
                 <rect id="Rectangle_374" data-name="Rectangle 374" width="143" height="134" transform="translate(-8949 8633.056)" fill="#ffb858"/>
-                <rect class="top-tower-section" id="" data-name="Rectangle 382" width="134" height="139" transform={`translate(-8806 8292.056) rotate(0) scale(1 ${step === 2 ? hoverColor === "#fff" ? "0" : (hoverTime / 50 <= 1 ? hoverTime / 50 : 1) : 0})`} fill={hoverColor} />
+                <rect class="top-tower-section" id="" data-name="Rectangle 382" width="134" height="139" transform={`translate(-8672 8431.056) rotate(180) scale(1 ${step === 2 ? hoverColor === "#fff" ? "0" : (hoverTime / 40 <= 1 ? hoverTime / 40 : 1) : 0})`} fill={hoverColor} />
 
                 <path id="Path_1479" data-name="Path 1479" d="M0,38.946H77.892A38.946,38.946,0,1,0,0,38.946Z" transform="translate(-8749.893 8351.174)" fill="#fff" opacity="0.416" className='mix-blend isolation' />
                 <rect className={`bottom-tower-section ${step === 4 ? "active" : ""}`} id="Rectangle_375" data-name="Rectangle 375" width="134" height="196" transform="translate(-8806 8571.056)" fill={step === 4 ? hoverColor : selectedColors[3]} />
@@ -149,7 +149,7 @@ const App = () => {
                 <path id="Path_1478" data-name="Path 1478" d="M0,0,62,62H0Z" transform="translate(-8672 8571.056)" fill="#ffb858"/>
                 <rect className={`top-small-block ${step === 1 ? "active" : ""}`} id="Rectangle_382" data-name="Rectangle 382" width="62" height="65" transform="translate(-8770 8292) rotate(-90)" fill={step === 1 ? "#fff" : selectedColors[0]} />
 
-                <rect class="top-small-block" id="Rectangle_382" data-name="Rectangle 382" width="65" height="65" transform={`translate(-8705 8292) rotate(180) scale(1 ${step === 1 ? hoverColor === "#fff" ? "0" : (hoverTime / 50 <= 1 ? hoverTime / 50 : 1) : 0})`} fill={hoverColor} />
+                <rect class="top-small-block" id="Rectangle_382" data-name="Rectangle 382" width="65" height="65" transform={`translate(-8705 8292) rotate(180) scale(1 ${step === 1 ? hoverColor === "#fff" ? "0" : (hoverTime / 40 <= 1 ? hoverTime / 40 : 1) : 0})`} fill={hoverColor} />
                 <line id="Line_9" data-name="Line 9" y2="26" transform="translate(-8729.5 8247.5)" fill="none" stroke="#0c1f87" strokeLinecap="round" strokeWidth="4"/>
                 <line id="Line_10" data-name="Line 10" y2="26" transform="translate(-8748.5 8247.5)" fill="none" stroke="#0c1f87" strokeLinecap="round" strokeWidth="4"/>
                 <path id="Path_1633" data-name="Path 1633" d="M0,0,62,62H0Z" transform="translate(-8610 8633.056) rotate(180)" fill="#ff5872"/>
