@@ -44,20 +44,22 @@ body {
 .position.pointer{
   height: 30px;
   width: 30px;
-  border-radius: 50%;
-  background: #61dafb;
-  border: 2px solid #61dafb;
   position: fixed;
   opacity: 1;
   z-index: 1000;
-  display: block;
   transition-property: left, top, width, height, background-color, opacity;
   transition-duration: .2s;
   transition-delay: 0s;
 }
-.position.pointer.hovering {
-  height: 35px;
-  width: 35px;
+.position.pointer svg{
+  margin-left: -50px;
+  transition: all .1s ease-in-out;
+}
+.position.pointer.hovering svg{
+  transform: scale(1.2);
+}
+.position.pointer.hovering svg path{
+  fill: #fef7ec;
 }
 
 .pie {

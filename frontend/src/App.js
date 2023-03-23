@@ -101,8 +101,14 @@ const App = () => {
       <div className={`position pointer pie ${hoverTime > 0 ? 'hovering' : ''}`} style={{
         left: `${50 + dotPos[0]}%`, top: `${40 + dotPos[1]}%`,
       }}>
-        {hoverTime > 0 ? Math.round(hoverTime / 30) + 1 : ""}
-        <h1>{hoverTime}</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="115.544" height="123.005" viewBox="0 0 115.544 123.005">
+          <g id="Group_637" data-name="Group 637" transform="matrix(0.899, 0.438, -0.438, 0.899, 39.52, -0.416)">
+            <line id="Line_3" data-name="Line 3" y2="12.307" transform="translate(20.883 43.549)" fill="none" stroke="#0c1f86" stroke-linecap="square" stroke-miterlimit="10" stroke-width="6"/>
+            <path id="Path_1468" data-name="Path 1468" d="M70.856,37.182l-35.8-6.132V9.263A7.263,7.263,0,0,0,27.788,2h0a7.263,7.263,0,0,0-7.263,7.263V43.5H14.3A8.3,8.3,0,0,0,6,51.8V63.818a24.9,24.9,0,0,0,5.457,15.557L20.525,93.3H74.476l6.458-41.976A12.452,12.452,0,0,0,70.856,37.182Z" transform="translate(0 0)" fill="#a7b5ff" stroke="#0c1f86" stroke-linecap="square" stroke-miterlimit="10" stroke-width="6"/>
+            <line id="Line_4" data-name="Line 4" y2="20.512" transform="translate(41.395 55.856)" fill="none" stroke="#0c1f86" stroke-linecap="square" stroke-miterlimit="10" stroke-width="6"/>
+            <line id="Line_5" data-name="Line 5" y2="20.512" transform="translate(57.805 55.856)" fill="none" stroke="#0c1f86" stroke-linecap="square" stroke-miterlimit="10" stroke-width="6"/>
+          </g>
+        </svg>
       </div>
 
       <div className='wrapper'>
