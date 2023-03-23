@@ -79,8 +79,8 @@ def time_run():
                     raw_output[lm_idx] = [x_percentage,y_percentage]
                     
                     last_values.append(raw_output[0])
-        if len(last_values) > SMOOTHNESS:
-            last_values.pop(0)
+        # if len(last_values) > SMOOTHNESS:
+        #     last_values.pop(0)            
         last_values = last_values[-SMOOTHNESS:]
         last_x_values = [coord[0] for coord in last_values]
         last_y_values = [coord[1] for coord in last_values]
