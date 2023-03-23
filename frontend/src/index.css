@@ -11,6 +11,7 @@ body {
 .main-container{
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 .wrapper {
@@ -32,11 +33,10 @@ body {
 }
 
 .title-wrapper{
-  padding-top: 7.4vh;
+  padding: 6vh 0;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 2vw;
   gap: 2rem;
 }
 
@@ -83,12 +83,12 @@ code {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding-bottom: 7.4vh;
+  padding-top: 7.4vh;
 }
 
 .color {
   width: 100%;
-  height: 25%;
+  height: 28%;
   border-radius: 30px;
   border: 4px solid #FFF7EB;
   overflow: hidden;
