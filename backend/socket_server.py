@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = 'secret!'
 CORS(app,resources={r"/*":{"origins":"*"}})
 socketio = SocketIO(app,cors_allowed_origins="*")
 
-SMOOTHNESS = 4
+SMOOTHNESS = 10
 NOSE_POSITION = 28
 raw_output = [[],[]]
 last_values = []
@@ -76,18 +76,20 @@ def time_run():
                 if idx == 8:
                     x_percentage = int(x/img_w*100) - 50
                     y_percentage = int(y/img_h*100) - 50
+                    emit("fingerposition",{"x": x_percentage, "y": y_percentage})
                     raw_output[lm_idx] = [x_percentage,y_percentage]
                     
                     last_values.append(raw_output[0])
-        # if len(last_values) > SMOOTHNESS:
-        #     last_values.pop(0)            
-        last_values = last_values[-SMOOTHNESS:]
+        if len(last_values) > SMOOTHNESS:
+            last_values.pop(0)            
+        #last_values = last_values[-SMOOTHNESS:]
+        #print(len(last_values))
         last_x_values = [coord[0] for coord in last_values]
         last_y_values = [coord[1] for coord in last_values]
         average_x = int(sum(last_x_values) / len(last_x_values))
         average_y = int(sum(last_y_values) / len(last_y_values))
-        print(average_x,average_y)
-    emit("fingerposition",{"x": average_x, "y": average_y})
+        #print(average_x,average_y)
+    #emit("fingerposition",{"x": average_x, "y": average_y})
     eventlet.sleep(0)
     
 

@@ -95,13 +95,14 @@ code {
   position: relative;
 }
 
-.color::before{
-  content: "";
+.inner {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  transform: scaleX(0);
+    transform-origin: 0 0;
   background: transparent linear-gradient(270deg, #00000043 0%, #00000015 100%) 0% 0% no-repeat padding-box;
 }
 
